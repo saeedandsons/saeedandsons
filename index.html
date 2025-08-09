@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Muawviz Khan — Prestige Digital & Security</title>
+  <meta name="description" content="Muawviz Khan — Prestige websites & security. Free demo in 24h. Govt. Central Model School | Roots Int. Askari 11 | National Aerospace | Arfa Tower." />
+
+  <!-- GTA-6 palette variables -->
+  <style>
+    :root{
+      --bg-midnight: #060612;
+      --gta1:#ff2d7d;  /* neon pink */
+      --gta2:#ff7e29;  /* sunset orange */
+      --gta3:#00eaff;  /* bright cyan */
+      --gta4:#6e00ff;  /* deep purple */
+      --gta-gradient: linear-gradient(90deg,var(--gta1),var(--gta2),var(--gta3),var(--gta4));
+      --panel: rgba(4,6,18,0.65); /* semi-opaque panel for readability */
+      --muted: #a8b0bf;
+      --ink: #f3f7fb;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --container:1100px;
+      --shadow: 0 18px 50px rgba(4,6,18,0.6);
+    }
+
+    /* ---------- Base / Background ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:var(--ink);-webkit-font-smoothing:antialiased}
+    body {
+      /* animated GTA-6 full-screen gradient background */
+      background: linear-gradient(135deg,var(--gta1),var(--gta2),var(--gta3),var(--gta4));
+      background-size: 400% 400%;
+      animation: gta6Gradient 18s ease infinite;
+      min-height:100%;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    @keyframes gta6Gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* subtle overlay to help readability while preserving neon background */
+    .page-bg-overlay{
+      position:fixed;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28));pointer-events:none;z-index:0;
+    }
+
+    /* ---------- Layout ---------- */
+    .wrap{max-width:var(--container);margin:28px auto;padding:20px;position:relative;z-index:2}
+    header{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--gta-gradient);color:#03020a;font-weight:900;font-size:20px;box-shadow:var(--shadow)}
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+
+    nav.inline{display:flex;gap:12px;align-items:center}
+    nav.inline a{color:rgba(243,247,251,0.86);font-weight:600;padding:8px;border-radius:9px}
+    .btn-cta{background:var(--gta-gradient);color:#03030b;padding:10px 14px;border-radius:12px;font-weight:800;box-shadow:0 12px 48px rgba(110,0,255,0.10);border:1px solid rgba(255,255,255,0.03)}
+
+    .hambtn{display:none;background:transparent;border:0;padding:6px}
+
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr minmax(260px,360px);gap:18px;align-items:start;margin-top:18px}
+    .panel{
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:18px;
+      border:1px solid var(--glass);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(255,45,125,0.08), rgba(255,126,41,0.06));font-weight:800;color:var(--gta4);font-size:12px}
+
+    /* ====== IMPORTANT: Readable Big Text (user requested) ====== */
+    /* Solid, very-high-contrast headline that stands out from neon background */
+    .readable-text {
+      color: #ffffff;                 /* solid white for max contrast */
+      font-size: clamp(26px, 6vw, 48px); /* responsive large */
+      font-weight: 900;
+      line-height: 1.02;
+      padding: 8px 0;
+      text-shadow:
+        0 1px 0 rgba(0,0,0,0.75),         /* subtle dark base */
+        0 6px 18px rgba(110,0,255,0.14);  /* gentle neon lift */
+      display: inline-block;
+    }
+
+    /* optional small gradient accent (if you still want neon edge) */
+    .accent-edge {
+      position: relative;
+    }
+    .accent-edge::after{
+      content:"";
+      position:absolute;left:-6px;right:-6px;bottom:-6px;height:6px;border-radius:6px;background:var(--gta-gradient);opacity:0.08;filter:blur(8px);z-index:-1;
+    }
+
+    .sub-lead{color:var(--muted);margin-top:6px;font-size:clamp(13px,2.6vw,15px)}
+
+    .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .hero-stats{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+    /* profile box */
+    .profile{display:flex;gap:12px;align-items:center;min-height:140px}
+    .avatar{width:110px;height:110px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .badges{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+    .badge{background:linear-gradient(90deg,var(--gta1),var(--gta3));padding:6px 10px;border-radius:999px;font-weight:700;color:#03020a;font-size:13px}
+
+    /* about / two-column */
+    .about{margin-top:18px;display:grid;gap:16px}
+    .cols{display:grid;gap:16px}
+    .cols.two{grid-template-columns:1fr 380px}
+
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .event{display:flex;gap:12px;align-items:flex-start}
+    .dot{width:12px;height:12px;border-radius:999px;background:var(--gta-gradient);flex:0 0 12px;margin-top:6px}
+    .muted{color:var(--muted)}
+
+    /* skills */
+    .skills{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .skill{display:flex;align-items:center;gap:10px}
+    .skill .name{flex:0 0 130px;font-weight:700;color:var(--ink)}
+    .skill .bar{flex:1;height:10px;background:rgba(255,255,255,0.05);border-radius:999px;overflow:hidden}
+    .skill .fill{height:100%;width:0;background:var(--gta-gradient);transition:width .9s cubic-bezier(.2,.9,.3,1)}
+
+    /* services / portfolio / testimonials styling */
+    .services{display:grid;gap:12px;margin-top:12px}
+    .services.grid-3{grid-template-columns:repeat(3,1fr)}
+    .svc{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03);box-shadow:0 14px 40px rgba(2,6,23,0.5);transition:transform .28s ease}
+    .svc h4{margin:6px 0 4px 0;color:var(--gta3)}
+    .svc:hover{transform:translateY(-8px)}
+
+    .portfolio{display:grid;gap:12px;margin-top:12px}
+    .portfolio.grid-3{grid-template-columns:repeat(3,1fr)}
+    .project.card{display:flex;flex-direction:column;gap:10px}
+
+    .test-wrap{margin-top:12px}
+    .test-list{display:flex;gap:12px;transition:transform .6s ease;will-change:transform}
+    .test{min-width:300px;padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03)}
+
+    .contact-grid{display:grid;gap:12px;margin-top:12px}
+    .contact-grid.cols{grid-template-columns:1fr 360px}
+
+    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center;padding-bottom:18px}
+
+    /* responsive */
+    @media (max-width:1024px){
+      .cols.two{grid-template-columns:1fr 320px}
+      .portfolio.grid-3{grid-template-columns:repeat(2,1fr)}
+      .services.grid-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:780px){
+      nav.inline{display:none}
+      .hambtn{display:block}
+      .hero{grid-template-columns:1fr}
+      .cols.two{grid-template-columns:1fr}
+      .contact-grid.cols{grid-template-columns:1fr}
+    }
+    @media (max-width:480px){
+      .avatar{width:86px;height:86px}
+      .brand h1{font-size:16px}
+    }
+
+    /* small helpers */
+    .small{font-size:13px;color:var(--muted)}
+    .pill{display:inline-block;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted)}
+    /* Portfolio Section Responsive Fix */
+#portfolio {
+  padding: 10px 15px;
+}
+
+#portfolio > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+  gap: 10px;
+}
+
+#portfolio > div:first-child > div {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.portfolio.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Tablet and above - 2 columns */
+@media (min-width: 600px) {
+  .portfolio.grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop and above - 3 columns */
+@media (min-width: 900px) {
+  .portfolio.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project.panel {
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.project.panel:hover {
+  transform: scale(1.05);
+}
+
+.project.panel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project.panel > div {
+  padding: 10px 15px;
+  color: #eee;
+}
+
+.project.panel strong {
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.project.panel .small.muted {
+  color: #aaa;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+/* Text ellipsis or wrap control on very small screens */
+@media (max-width: 350px) {
+  .project.panel strong {
+    font-size: 1rem;
+  }
+  .project.panel .small.muted {
+    font-size: 0.75rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- animated neon background overlay for depth -->
+  <div class="page-bg-overlay" aria-hidden="true"></div>
+
+  <div class="wrap" role="document">
+    <header role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">MK</div>
+        <div>
+          <h1>Muawviz Khan</h1>
+          <p class="small muted">Prestige Digital & Security — Lahore</p>
+        </div>
+      </div>
+
+      <nav class="inline" role="navigation" aria-label="Main nav">
+        <a href="#services" class="small">Services</a>
+        <a href="#about" class="small">About</a>
+        <a href="#portfolio" class="small">Portfolio</a>
+        <a href="#contact" class="btn-cta">Free Demo</a>
+      </nav>
+
+      <button class="hambtn" id="hambtn" aria-label="Open menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#f3f7fb" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <!-- mobile nav -->
+    <div id="mobileNav" style="display:none;position:fixed;inset:0;background:linear-gradient(180deg,rgba(7,8,14,0.94),rgba(7,8,14,0.98));z-index:120;padding:28px;color:var(--ink)">
+      <button id="closeNav" aria-label="Close menu" style="float:right;border:0;background:transparent;padding:6px;color:var(--ink)">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M6 18L18 6" stroke="#f3f7fb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <nav style="margin-top:36px;display:flex;flex-direction:column;gap:18px">
+        <a href="#services" style="color:var(--muted)">Services</a>
+        <a href="#about" style="color:var(--muted)">About</a>
+        <a href="#portfolio" style="color:var(--muted)">Portfolio</a>
+        <a href="#contact" style="color:var(--muted)">Contact</a>
+      </nav>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-label="Hero">
+        <article class="panel" aria-labelledby="heroTitle">
+          <div class="eyebrow">PRESTIGE • GTA-6 VIBE • TRUST</div>
+
+          <!-- BIG READABLE HEADLINE -->
+          <h1 id="heroTitle" class="readable-text accent-edge">Muawviz Khan — Prestige Websites & Security</h1>
+
+          <p class="sub-lead">Designer & developer focused on fast, conversion-first websites and practical security work. Free demo homepage in <strong>24 hours</strong>. Local Lahore support.</p>
+
+          <div class="hero-cta">
+            <a class="btn-cta" href="#contact">Request Free Demo</a>
+            <a class="pill" href="#portfolio">See Portfolio</a>
+            <a class="pill" href="#about">About Me</a>
+          </div>
+
+          <div class="hero-stats">
+            <span class="pill">⚡ 24h Demo</span>
+            <span class="pill">⭐ 210+ 5★ reviews</span>
+            <span class="pill">🏫 Trusted by local schools</span>
+          </div>
+
+          <div id="typed" style="margin-top:10px" aria-hidden="true"></div>
+        </article>
+
+        <aside class="panel profile" aria-labelledby="profileName">
+          <div class="avatar" aria-hidden="true">
+            <!-- replace with your photo -->
+            <img loading="lazy" src="https://images.pexels.com/photos/5935788/pexels-photo-5935788.jpeg?_gl=1*1rsvald*_ga*MjgwMTA2NjQ0LjE3NTQ3NTUwNjg.*_ga_8JE65Q40S6*czE3NTQ3NTUwNjgkbzEkZzEkdDE3NTQ3NTYwNDYkajQ3JGwwJGgw=80&w=800&auto=format&fit=crop" alt="Portrait">
+          </div>
+          <div>
+            <div id="profileName" style="font-weight:800;font-size:15px">Muawviz Khan</div>
+            <div class="small muted">Web Developer • Security Researcher • Lahore</div>
+
+            <div class="badges" aria-hidden="true">
+              <div class="badge">Free Demo • 24h</div>
+              <div class="badge">Local Support</div>
+            </div>
+
+            <div style="margin-top:10px;font-size:13px;color:var(--muted)">
+              WhatsApp: <a href="https://wa.me/923258575790?text=Assalamualaikum%20I%20need%20a%20free%20demo" target="_blank" rel="noopener">+92 325 8575790</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="about" aria-label="About">
+        <div class="cols two">
+          <div class="panel">
+            <h2 style="margin:0 0 8px 0">About — <span style="background:var(--gta-gradient);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800">Prestige Profile</span></h2>
+            <p class="muted"><strong>Muawviz Khan</strong> builds fast, conversion-first websites and performs practical, responsible security research. He combines clean UX, WhatsApp-first CTAs, and optimized performance to deliver measurable results for schools and businesses.</p>
+
+            <h3 style="margin-top:14px">Education & Roots</h3>
+            <p class="muted">Foundation at <strong>Govt. Central Model School, Lahore</strong> and college at <strong>Roots International, Askari 11</strong> — institutions that shaped his technical foundations and leadership.</p>
+
+            <h3 style="margin-top:12px">Experience & Impact</h3>
+            <p class="muted">Contributed to projects at <strong>National Aerospace (Cantt)</strong> and completed internship & client services at <strong>Arfa Tower</strong>. Clients saw improved admissions, order volumes, and bookings after his work.</p>
+
+            <h3 style="margin-top:12px">Security Stance</h3>
+            <p class="muted">Practical security researcher — described as medium-level gray-hat in experience, but always ethical: responsible disclosure and remediation-first focus.</p>
+
+            <div class="skills" aria-hidden="true">
+              <div style="font-weight:800;margin-top:8px;color:var(--muted)">Core Skills</div>
+              <div class="skill"><div class="name">Python</div><div class="bar"><div class="fill" data-pct="95"></div></div></div>
+              <div class="skill"><div class="name">JavaScript / Node</div><div class="bar"><div class="fill" data-pct="94"></div></div></div>
+              <div class="skill"><div class="name">HTML & CSS</div><div class="bar"><div class="fill" data-pct="99"></div></div></div>
+              <div class="skill"><div class="name">Security Research</div><div class="bar"><div class="fill" data-pct="82"></div></div></div>
+              <div class="skill"><div class="name">DevOps / Deploy</div><div class="bar"><div class="fill" data-pct="78"></div></div></div>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h3 style="margin:0 0 10px 0">Career Timeline</h3>
+            <div class="timeline">
+              <div class="event"><div class="dot"></div><div><strong>Govt. Central Model School — Foundation</strong><div class="small muted">Local trust & leadership</div></div></div>
+              <div class="event"><div class="dot"></div><div><strong>Roots International, Askari 11</strong><div class="small muted">Advanced coursework & teamwork</div></div></div>
+              <div class="event"><div class="dot"></div><div><strong>National Aerospace (Cantt)</strong><div class="small muted">Security-aware projects</div></div></div>
+              <div class="event"><div class="dot"></div><div><strong>Arfa Tower — Internship & Services</strong><div class="small muted">Prototypes & client integrations</div></div></div>
+            </div>
+
+            <div style="margin-top:12px" class="pill">Available: Local Lahore support • Free demo in 24h</div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" style="margin-top:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="small muted" style="font-weight:800">SERVICES</div>
+            <h3 style="margin:8px 0 0 0">Design · Build · Secure</h3>
+          </div>
+        </div>
+
+        <div class="services grid-3" aria-label="Services list">
+          <div class="svc panel"><h4>Landing Pages — Conversion Focus</h4><div class="small muted" style="margin-top:6px">WhatsApp CTAs & fast LCP.</div></div>
+          <div class="svc panel"><h4>School Websites</h4><div class="small muted" style="margin-top:6px">Admissions flows & parent info.</div></div>
+          <div class="svc panel"><h4>Portfolio & Bookings</h4><div class="small muted" style="margin-top:6px">Minimal & convertible.</div></div>
+          <div class="svc panel"><h4>Google Business & Local SEO</h4><div class="small muted" style="margin-top:6px">Maps & search optimization.</div></div>
+          <div class="svc panel"><h4>Security Reviews (Ethical)</h4><div class="small muted" style="margin-top:6px">Responsible assessments & fixes.</div></div>
+          <div class="svc panel"><h4>Forms & Bookings</h4><div class="small muted" style="margin-top:6px">WhatsApp/email flows.</div></div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio" style="margin-top:18px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="small muted" style="font-weight:800">PORTFOLIO</div>
+            <h3 style="margin:8px 0 0 0">Selected Work & Impact</h3>
+          </div>
+        </div>
+
+        <div class="portfolio grid-3" aria-label="Portfolio">
+          <article class="project panel">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Admissions project">
+            <div><strong>Admissions Boost — Local School</strong><div class="small muted">Converted visitors into admissions with trust-focused demo.</div></div>
+          </article>
+
+          <article class="project panel">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Arfa Tower project">
+            <div><strong>Arfa Tower — Internship Projects</strong><div class="small muted">Prototypes & client integrations.</div></div>
+          </article>
+
+          <article class="project panel">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200&auto=format&fit=crop" alt="National Aerospace">
+            <div><strong>National Aerospace (Cantt)</strong><div class="small muted">Contributed to secure, mission-oriented systems.</div></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section style="margin-top:18px" aria-label="Testimonials">
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="small muted" style="font-weight:800">TESTIMONIALS</div>
+              <h3 style="margin:8px 0 0 0">Trusted by local leaders</h3>
+            </div>
+          </div>
+
+          <div class="test-wrap" style="margin-top:12px">
+            <div class="test-list" id="tests">
+              <div class="test"><p>“The demo sold our admissions — parents trusted the site immediately.”</p><div class="small muted" style="margin-top:8px">— Principal, Govt. Central Model School</div></div>
+              <div class="test"><p>“Orders jumped and calls doubled — fast and reliable.”</p><div class="small muted" style="margin-top:8px">— Sara, Cafe Owner</div></div>
+              <div class="test"><p>“A clean, bold portfolio that booked shoots within days.”</p><div class="small muted" style="margin-top:8px">— Ali, Photographer</div></div>
+            </div>
+            <div class="small" style="text-align:center;margin-top:12px" id="testDots"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" style="margin-top:18px">
+        <div class="contact-grid cols">
+          <div class="panel">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div class="small muted" style="font-weight:800">CONTACT</div>
+                <h3 style="margin:8px 0 0 0">Free demo — ready in 24 hours</h3>
+              </div>
+            </div>
+
+            <p class="muted" style="margin-top:8px">Fast response via WhatsApp — live demo homepage before payment.</p>
+
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn-cta" href="https://wa.me/923258575790?text=Assalamualaikum%20I%20need%20a%20free%20demo" target="_blank" rel="noopener">Message on WhatsApp</a>
+              <a class="pill" href="tel:+923258575790">Call +92 325 8575790</a>
+              <a class="pill" href="mailto:ah00121852@gmail.com">Email</a>
+            </div>
+
+            <form id="contactForm" novalidate style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+              <input id="name" name="name" placeholder="Your name" aria-label="Your name" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--ink)"/>
+              <input id="biz" name="biz" placeholder="Business / School name" aria-label="Business name" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--ink)"/>
+              <input id="email" name="email" placeholder="Email (optional)" type="email" aria-label="Email" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--ink)"/>
+              <textarea id="message" name="message" placeholder="Short message / What do you need?" aria-label="Message" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--ink)"></textarea>
+
+              <div style="display:flex;gap:8px">
+                <select id="method" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--ink)">
+                  <option value="whatsapp">WhatsApp (fastest)</option>
+                  <option value="email">Email</option>
+                </select>
+                <button id="send" type="button" class="btn-cta">Send</button>
+              </div>
+              <div id="note" class="small muted" style="margin-top:6px"></div>
+            </form>
+          </div>
+
+          <aside class="panel">
+            <div style="font-weight:800;font-size:12px;color:var(--muted)">CONTACT</div>
+            <div style="margin-top:8px;font-weight:800;color:var(--gta3)">WhatsApp: +92 325 8575790</div>
+            <div class="small muted" style="margin-top:6px">Free demo homepage ready in 24 hours — local Lahore support.</div>
+
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+
+            <div style="font-weight:700;color:var(--muted)">Proof of impact</div>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <div class="pill">Admissions ↑</div>
+              <div class="pill">Orders & Menus</div>
+              <div class="pill">Portfolio Bookings</div>
+              <div class="pill">Local SEO Results</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="small muted">© <span id="year"></span> Muawviz Khan — Prestige Digital & Security • Email: <a href="mailto:ah00121852@gmail.com">ah00121852@gmail.com</a></div>
+    </footer>
+  </div>
+
+  <!-- ---------- JS (embedded, all features) ---------- -->
+  <script>
+    // YEAR
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const hambtn = document.getElementById('hambtn'),
+          mobileNav = document.getElementById('mobileNav'),
+          closeNav = document.getElementById('closeNav');
+    if(hambtn) hambtn.addEventListener('click', ()=>{ mobileNav.style.display = 'block'; mobileNav.setAttribute('aria-hidden','false'); });
+    if(closeNav) closeNav.addEventListener('click', ()=>{ mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); });
+    document.querySelectorAll('#mobileNav a').forEach(a=> a.addEventListener('click', ()=> { mobileNav.style.display = 'none'; }));
+
+    // Typing effect (hero microline)
+    (function typing(){
+      const el = document.getElementById('typed');
+      if(!el) return;
+      const texts = ['Prestige Websites • GTA-6 Vibe','Free demo in 24h','Local Lahore support • WhatsApp-ready'];
+      let t=0, i=0, forward=true;
+      function step(){
+        const full = texts[t];
+        if(forward){ i++; el.textContent = full.slice(0,i); if(i>=full.length){ forward=false; setTimeout(step,800); return; } }
+        else { i--; el.textContent = full.slice(0,i); if(i<=0){ forward=true; t=(t+1)%texts.length; setTimeout(step,280); return; } }
+        setTimeout(step, forward?60:30);
+      }
+      step();
+    })();
+
+    // Skill bars on scroll
+    (function skillBars(){
+      const fills = document.querySelectorAll('.fill');
+      if(!fills.length) return;
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            fills.forEach(f => { const pct = f.dataset.pct || 80; f.style.width = pct + '%'; });
+            obs.disconnect();
+          }
+        });
+      }, {threshold:0.22});
+      obs.observe(document.querySelector('.skills') || document.body);
+    })();
+
+    // Reveal on scroll for panels/cards
+    (function revealOnScroll(){
+      const els = document.querySelectorAll('.panel, .svc, .project, .test');
+      els.forEach(e => { e.style.opacity = 0; e.style.transform = 'translateY(14px)'; e.style.transition = 'all .7s cubic-bezier(.2,.9,.3,1)'; });
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(en => {
+          if(en.isIntersecting){ en.target.style.opacity = 1; en.target.style.transform = 'translateY(0)'; }
+        });
+      }, {threshold: 0.12});
+      els.forEach(el => obs.observe(el));
+    })();
+
+    // Testimonials slider (simple)
+    (function testimonials(){
+      const list = document.getElementById('tests');
+      const dotsWrap = document.getElementById('testDots');
+      if(!list) return;
+      const items = Array.from(list.children);
+      let pos = 0;
+      function update(){
+        const gap = 12;
+        const w = items[0].getBoundingClientRect().width + gap;
+        list.style.transform = `translateX(-${pos * w}px)`;
+        if(dotsWrap){
+          dotsWrap.innerHTML = items.map((_,i)=> `<button data-i="${i}" aria-label="Go to testimonial ${i+1}" style="margin:0 6px;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:${i===pos ? 'linear-gradient(90deg,var(--gta3),var(--gta4))' : 'transparent'}"></button>`).join('');
+          dotsWrap.querySelectorAll('button').forEach(b => b.addEventListener('click', ()=> { pos = +b.dataset.i; update(); reset(); }));
+        }
+      }
+      let auto = setInterval(()=>{ pos = (pos+1) % items.length; update(); }, 5000);
+      function reset(){ clearInterval(auto); auto = setInterval(()=>{ pos = (pos+1) % items.length; update(); }, 5000); }
+      setTimeout(update, 120);
+      window.addEventListener('resize', ()=> setTimeout(update, 140));
+    })();
+
+    // Contact form logic (whatsapp / mailto)
+    (function contact(){
+      const send = document.getElementById('send'), note = document.getElementById('note');
+      function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+      if(!send) return;
+      send.addEventListener('click', ()=>{
+        const name = document.getElementById('name').value.trim();
+        const biz = document.getElementById('biz').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const msg = document.getElementById('message').value.trim();
+        const method = document.getElementById('method').value;
+        if(!name || !biz || !msg){ note.textContent = 'Please fill name, business and message.'; note.style.color = '#ff6b6b'; return; }
+        if(email && !validEmail(email)){ note.textContent = 'Please enter a valid email or leave blank.'; note.style.color = '#ff6b6b'; return; }
+        const wa = '923258575790';
+        const text = `Hello, I am ${name} from ${biz}. ${msg}${email ? ' Email: '+email : ''}`;
+        if(method === 'whatsapp'){ window.open(`https://wa.me/${wa}?text=${encodeURIComponent(text)}`, '_blank'); note.textContent = 'Opening WhatsApp — please send the message there.'; note.style.color = 'var(--gta3)'; }
+        else { const mail = 'ah00121852@gmail.com'; const subject = `Website enquiry — ${biz}`; const body = `Name: ${name}\nBusiness: ${biz}\nMessage: ${msg}\n${email ? 'Reply Email: '+email+'\n' : ''}\nSent via Muawviz Khan site.`; window.location.href = `mailto:${mail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; note.textContent = 'Opening mail client...'; note.style.color = 'var(--gta3)'; }
+      });
+    })();
+
+    // close mobile nav click outside
+    document.addEventListener('click', (e)=> {
+      const mn = document.getElementById('mobileNav');
+      const hb = document.getElementById('hambtn');
+      if(!mn) return;
+      if(mn.style.display === 'block' && hb && !mn.contains(e.target) && !hb.contains(e.target)){
+        mn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
